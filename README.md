@@ -4,7 +4,7 @@ Proje Django 1.11.29 ve Python 3.7 ile yazılmış olup, bir veteriner projesi o
 ## Kurulum
 İndirdikten sonra proje dizini içerisinde :
 
-virtualenv venv
+**_Sanal Ortamın Kurulumu_** ```virtualenv venv```
 
 **_Linux & Mac:_** ``` source venv/bin/activate```
 
