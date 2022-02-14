@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block body %}
+{# /pet/{{pet.id}}#}
+{# url 'detail' id=pet.id #}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1>
+                    <form class="navbar-form navbar-center" role="search" method="GET" action="">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="q" placeholder="Search" value="{{ request.GET.q }} " >
+                    <span class="input-group-btn">
+                        <input class="btn btn-dark" type="button" value="Ara" >
+                    </span>
+                </div>
+            </form>
+    </div>
+    </div>
+    <hr>
+
+    {% for pet in pets %}
+        <div class="row">
+                                       <!-- Arama Çubuğu -->
+
+            <div class="col-md-6 col-md-offset-3>
+
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% if pet.image %}
+                        <img src="{{ pet.image.url}}" class="img-responsive" >
+                        {% endif %}
+                        <h5>{{pet.name}} <small>{{ pet.breed }}</small></h5>
+                        <h4> Sahip: {{pet.user.get_full_name }}</h4>
+
+                        <p> {{ pet.description|truncatechars:100 }}</p>
+                        <p><a href="{{ pet.get_absolute_url }}" class="btn btn-primary">İncele</a>
+
+                        <hr>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if pets.has_previous %}
+            <a href="?page={{ pets.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q}}{% endif %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ pets.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if pets.has_next %}
+            <a href="?page={{ pets.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q}}{% endif %}">next</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+</div>
+
+{% endblock %}

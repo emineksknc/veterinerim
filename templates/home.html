@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} Anasayfa {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <h1><b>Hoşgeldiniz, {{ request.user.get_full_name }}</b></h1>
+             <img src="media/internet-in-space-featured.jpg" class="img-responsive" >
+
+        </div>
+
+    </div>
+
+{% endblock %}

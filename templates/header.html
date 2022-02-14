@@ -1,0 +1,46 @@
+<!-- Navbar Start -->
+<nav class="navbar navbar-inverse navbar-fixed-top " role="banner" >
+    <div class="container">
+
+        <div class="navbar-header">
+
+            <!-- Telefon ekranları için menü butonu -->
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- İsim Soyisim veya Marka İsmi -->
+            <a href="{% url 'home' %}" class="navbar-brand">Veterinerim</a>
+        </div>
+
+        <nav class="collapse navbar-collapse" role="navigation">
+
+
+            <!-- Temel Sayfalar -->
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="{% url 'home' %}">Anasayfa</a></li>
+                <li><a href="{% url 'pet:index' %}">Evcil Hayvanlar</a></li>
+
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'pet:create' %}">Evcil Hayvanını Tanıt</a></li>
+                    <li><a href="{% url 'petowner:profile' %}">Evcil Hayvanların</a></li>
+                {% endif %}
+
+                {% if not request.user.is_authenticated %}
+                    <li><a href="{% url 'petowner:login' %}">Giriş Yap</a></li>
+                    <li><a href="{% url 'petowner:signup' %}">Üye Ol</a></li>
+                {% else %}
+                    <li><a href="{% url 'petowner:logout' %}">Çıkış Yap</a></li>
+
+                {% endif %}
+
+
+            </ul>
+
+        </nav>
+
+    </div>
+</nav>

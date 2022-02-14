@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3>
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% if pet.image %}
+                        <img src="{{ pet.image.url}}" class="img-responsive" >
+                        {% endif %}
+                        <p>
+                        <h5><b>Adı:</b> {{pet.name}} </h5>
+                        <h5><b>Türü:</b>  {{pet.type}} </h5>
+                        <h5> <b>Cinsi: </b> {{pet.breed}} </h5>
+                        <h5> <b>Açıklama: </b> {{ pet.description}}</h5>
+                        <h5> <b>Yaşı: </b> {{pet.age}} </h5>
+                        </p>
+                        <p>
+                        <h5> <b><i>Hayvan Sahibi Bilgileri </b></i> </h5>
+                        <h5> <b>Ad-Soyad:</b>  {{pet.user.get_full_name }}</h5>
+                        <h5> <b>Email:</b>  {{pet.user.email }}</h5>
+                        <h5> <b>Telefon:</b>  {{petowner_phone.phone}}</h5>
+
+                         </p>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+{% endblock %}

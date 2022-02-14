@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block body %}
+{# /petowner/{{user.id}}#}
+{# url 'detail' id=user.id #}
+<div class="container">
+    {% for pet in pets %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3>
+                <div class="thumbnail">
+                    <div class="caption">
+                        {% if pet.image %}
+                        <img src="{{ pet.image.url}}" class="img-responsive" >
+                        {% endif %}
+                        <h5>{{pet.name}} <small>{{ pet.breed }}</small></h5>
+                        <h4> Sahip: {{pet.user.get_full_name }}</h4>
+
+                        <p> {{ pet.description|truncatechars:100 }}</p>
+                        <p><a href="{{ pet.get_absolute_url }}" class="btn btn-primary">İncele</a>
+                            {% if request.user.is_authenticated %}
+                        <a href="{{ pet.get_update_url }}" class="btn btn-default">Güncelle</a>
+                        <a href="{{ pet.get_delete_url }}" class="btn btn-danger">Sil</a>
+                        {% endif %}
+                        </p>
+                        <hr>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+{% endfor %}
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if petowners.has_previous %}
+            <a href="?page={{ petowners.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q}}{% endif %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ petowners.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if petowners.has_next %}
+            <a href="?page={{ petowners.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q}}{% endif %}">next</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+</div>
+
+{% endblock %}
